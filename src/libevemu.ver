@@ -1,4 +1,4 @@
-UTOUCH_EVEMU_1.0 {
+EVEMU_1.0 {
   global:
     evemu_create;
     evemu_delete;
