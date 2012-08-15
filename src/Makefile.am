@@ -1,8 +1,8 @@
-lib_LTLIBRARIES = libutouch-evemu.la
+lib_LTLIBRARIES = libevemu.la
 
-libutouch_evemu_la_LDFLAGS = -version-info @LIB_VERSION@
+libevemu_la_LDFLAGS = -version-info @LIB_VERSION@
 
-libutouch_evemu_la_SOURCES = \
+libevemu_la_SOURCES = \
 	evemu-impl.h \
 	evemu.c
 
@@ -10,6 +10,6 @@ AM_CFLAGS = $(CWARNFLAGS)
 
 INCLUDES = -I$(top_srcdir)/include/
 
-libutouch_evemuincludedir = $(includedir)
-libutouch_evemuinclude_HEADERS = \
+libevemuincludedir = $(includedir)
+libevemuinclude_HEADERS = \
 	$(top_srcdir)/include/evemu.h

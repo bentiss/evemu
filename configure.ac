@@ -3,7 +3,7 @@ AC_PREREQ([2.60])
 AC_INIT([Kernel device emulation],
         [1.0.5],
         [],
-        [utouch-evemu])
+        [evemu])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([config-aux])
@@ -36,5 +36,5 @@ fi
 AC_CONFIG_FILES([Makefile
                  src/Makefile
                  tools/Makefile
-                 utouch-evemu.pc])
+                 evemu.pc])
 AC_OUTPUT
