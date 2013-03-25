@@ -33,6 +33,23 @@ enum flags {
 	ALLFLAGS	 = (PROPS << 1) - 1
 };
 
+#define NAME_ELEMENT(element) [element] = #element
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-pedantic"
+#pragma GCC diagnostic ignored "-Woverride-init"
+static const char * const flags_names[ALLFLAGS + 1] = {
+	[0 ... ALLFLAGS] = NULL,
+	NAME_ELEMENT(MINIMUM),
+	NAME_ELEMENT(FFVERSION),
+	NAME_ELEMENT(HEADER_COMMENT),
+	NAME_ELEMENT(LINE_COMMENT),
+	NAME_ELEMENT(BITS),
+	NAME_ELEMENT(ABSINFO),
+	NAME_ELEMENT(PROPS),
+};
+#pragma GCC diagnostic pop
+#undef NAME_ELEMENT
+
 static int max[EV_CNT] = {
 	0,	 /* EV_SYN */
 	KEY_MAX, /* EV_KEY */
@@ -133,6 +150,18 @@ void check_evemu_read(int fd, char *file, enum flags flags)
 	fclose(fp);
 }
 
+static void dump_flags(int flags)
+{
+	int i;
+	fprintf(stderr, "testing against");
+	for (i = 0; i < ALLFLAGS; i++) {
+		if (flags_names[i] && flags & i)
+			fprintf(stderr, " %s", flags_names[i]);
+	}
+	fprintf(stderr, "\n");
+	fflush(stderr);
+}
+
 int main(int argc UNUSED, char **argv UNUSED) {
 	int fd = 0;
 	int flags = 0;
@@ -144,8 +173,10 @@ int main(int argc UNUSED, char **argv UNUSED) {
 		return 1;
 	}
 
-	while (flags < ALLFLAGS)
+	while (flags < ALLFLAGS) {
+		dump_flags(flags);
 		check_evemu_read(fd, tmpname, flags++);
+	}
 
 	close(fd);
 	unlink(tmpname);
