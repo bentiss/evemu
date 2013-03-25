@@ -26,10 +26,10 @@ enum flags {
 	MINIMUM		 = 0,
 	FFVERSION	 = (1 << 0), /* file format version */
 	HEADER_COMMENT	 = (1 << 1), /* multi-line header comment */
-	LINE_COMMENT	 = (1 << 1), /* multi-line comment between other lines */
-	BITS		 = (1 << 2), /* some bits are set */
-	ABSINFO		 = (1 << 3), /* has absinfo */
-	PROPS		 = (1 << 4), /* has props */
+	LINE_COMMENT	 = (1 << 2), /* multi-line comment between other lines */
+	BITS		 = (1 << 3), /* some bits are set */
+	ABSINFO		 = (1 << 4), /* has absinfo */
+	PROPS		 = (1 << 5), /* has props */
 	ALLFLAGS	 = (PROPS << 1) - 1
 };
 
