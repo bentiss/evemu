@@ -18,19 +18,17 @@
 #define EVEMU_IMPL_H
 
 #include <evemu.h>
-#include <linux/uinput.h>
+#include <libevdev/libevdev.h>
 
 #define EVPLAY_NBITS	KEY_CNT
 #define EVPLAY_NBYTES	((EVPLAY_NBITS + 7) / 8)
 
 struct evemu_device {
 	unsigned int version;
-	char name[UINPUT_MAX_NAME_SIZE];
-	struct input_id id;
-	unsigned char prop[EVPLAY_NBYTES];
-	unsigned char mask[EV_CNT][EVPLAY_NBYTES];
+	unsigned int fd_changed;
+	struct libevdev *evdev;
+	struct libevdev_uinput *udev;
 	int pbytes, mbytes[EV_CNT];
-	struct input_absinfo abs[ABS_CNT];
 };
 
 #endif

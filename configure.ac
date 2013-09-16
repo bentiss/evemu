@@ -13,7 +13,7 @@ AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE([enable])
 
-LIB_VERSION=1:0:0
+LIB_VERSION=2:0:0
 AC_SUBST([LIB_VERSION])
 
 # Initialize libtool
@@ -24,6 +24,8 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
 AM_PATH_PYTHON([2.6])
+
+PKG_CHECK_MODULES([LIBEVDEV], [libevdev])
 
 # man page generation
 AC_ARG_VAR([XMLTO], [Path to xmlto command])
