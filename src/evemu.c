@@ -381,6 +381,7 @@ static void write_desc(const struct evemu_device *dev, FILE *fp)
 					    "#       Fuzz  %6d\n"
 					    "#       Flat  %6d\n"
 					    "#       Resolution %d\n",
+					    /* use absinfo */
 					    evemu_get_abs_current_value(dev, j),
 					    evemu_get_abs_minimum(dev, j),
 					    evemu_get_abs_maximum(dev, j),
@@ -411,7 +412,7 @@ int evemu_write(const struct evemu_device *dev, FILE *fp)
 
 	fprintf(fp, "N: %s\n", evemu_get_name(dev));
 
-	fprintf(fp, "I: %04x %04x %04x %04x\n",
+	fprintf(fp, "I: %04x %04x %04x %04x\n", /* use absinfo */
 		evemu_get_id_bustype(dev), evemu_get_id_vendor(dev),
 		evemu_get_id_product(dev), evemu_get_id_version(dev));
 
@@ -545,6 +546,7 @@ static int parse_abs(struct evemu_device *dev, const char *line, struct version 
 		return -1;
 	}
 
+/* use absinfo */
 	evemu_set_abs_minimum(dev, index, abs.minimum);
 	evemu_set_abs_maximum(dev, index, abs.maximum);
 	evemu_set_abs_fuzz(dev, index, abs.fuzz);
