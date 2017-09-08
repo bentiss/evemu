@@ -388,6 +388,17 @@ class Device(object):
         """
         return self._libevemu.evemu_get_id_version(self._evemu_device)
 
+    def get_abs_current_value(self, event_code):
+        """
+        Return the current value for the given EV_ABS value.
+
+        event_code may be an int or string-like ("ABS_X").
+        """
+        if not isinstance(event_code, int):
+            event_code = event_get_value("EV_ABS", event_code)
+        return self._libevemu.evemu_get_abs_current_value(self._evemu_device,
+                                                          event_code)
+
     def get_abs_minimum(self, event_code):
         """
         Return the axis minimum for the given EV_ABS value.
